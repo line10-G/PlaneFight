@@ -4,7 +4,6 @@ import { ScoreUI } from './UI/ScoreUI';
 import { Player } from './Player';
 import { GameOverUI } from './UI/GameOverUI';
 import { AudioMgr } from './AudioMgr';
-import { EnemyManager } from './EnemyManager';
 const { ccclass, property } = _decorator;
 
 @ccclass('GameManager')
@@ -78,8 +77,6 @@ export class GameManager extends Component {
     onPauseBottonClick(){
         AudioMgr.inst.playOneShot(this.buttonAudio,1);
         AudioMgr.inst.pause();
-        EnemyManager.getInstance().enemy2Audio.pause();
-        director.pause();
         this.player.disableControl();
         this.pauseBottonNode.active=false;
         this.resumeBottonNode.active=true;
@@ -88,8 +85,6 @@ export class GameManager extends Component {
     onResumeBottonClick(){
         AudioMgr.inst.playOneShot(this.buttonAudio,1);
         AudioMgr.inst.resume();
-        EnemyManager.getInstance().enemy2Audio.play();
-        director.resume();
         this.player.enableControl();
         this.resumeBottonNode.active=false;
         this.pauseBottonNode.active=true;
